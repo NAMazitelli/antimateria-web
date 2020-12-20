@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content= "width=device-width, user-scalable=no">
+        <title>Modelo 3D</title>
+
+        <script src='src/utils/three.min.js'></script>
+        <script src='src/utils/threeAR.js'></script>
+
+        <script type="module" src="script.js"></script>
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        
+        <link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
+        <link href="src/css/styles.css" rel="stylesheet" type="text/css">
+    </head>
+
+    <body>
+        <div id="loading-overlay"  class="hidden">
+          <div class="preloader">
+            <div class="preloader__ring">
+              <div class="preloader__sector">L</div>
+              <div class="preloader__sector">o</div>
+              <div class="preloader__sector">a</div>
+              <div class="preloader__sector">d</div>
+              <div class="preloader__sector">i</div>
+              <div class="preloader__sector">n</div>
+              <div class="preloader__sector">g</div>
+              <div class="preloader__sector">.</div>
+              <div class="preloader__sector">.</div>
+              <div class="preloader__sector">.</div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+            </div>
+            <div class="preloader__ring">
+              <div class="preloader__sector">L</div>
+              <div class="preloader__sector">o</div>
+              <div class="preloader__sector">a</div>
+              <div class="preloader__sector">d</div>
+              <div class="preloader__sector">i</div>
+              <div class="preloader__sector">n</div>
+              <div class="preloader__sector">g</div>
+              <div class="preloader__sector">.</div>
+              <div class="preloader__sector">.</div>
+              <div class="preloader__sector">.</div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+              <div class="preloader__sector"></div>
+            </div>
+          </div>
+          <div id="loading-bar">
+            <span id="progress"></span>
+          </div>
+        </div>
+
+
+        <div id="game_ui_container" class="hidden">
+          <div id="start_menu">
+              <div class="buttons-container">
+                  <div class="main-menu-btn" id="start_game">Start Game</div>
+                  <div class="main-menu-btn">Instructions</div>
+                  <div class="main-menu-btn" id="start_game_ar">AR+</div>
+                  <div class="main-menu-btn">Options</div>
+                  <div class="main-menu-btn">About us</div>
+              </div>
+          </div>
+          <div id="main_game">
+              <div class="ui_hud">
+                  <div class="flexbox header">
+                      <div class="ui_box">
+                          <span class="ui_label">
+                              <img class="ui_icon" src="src/images/mineral-icon.png"/> <span id="gold_label">200</span>
+                          </span>
+                      </div>
+                      <div class="ui_box">
+                          <span class="ui_label">
+                              <img class="ui_icon" src="src/images/heart-icon.png"/> <span id="lives_label">200</span>
+                          </span>
+                      </div>
+                      <div class="ui_box hidden">
+                          <span class="ui_label">
+                              Hordes Left: <span id="hordes_left_label">200</span>
+                          </span>
+                      </div>
+                      <div class="ui_box">
+                          <span class="ui_label">
+                              <img class="ui_icon" src="src/images/clock-icon.png"/>  <span id="time_left_label">200</span>
+                          </span>
+                      </div>
+                      <div class="ui_box">
+                          <span class="ui_label" id="horde-btn">
+                              <img class="ui_icon" src="src/images/play-button.png"/>
+                          </span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div id="ui_purchases_menu" class="ui_purchases_menu hidden">
+              <!--h3>Deploy a building</h3-->
+              <div class="purchase_options">
+                  <div class="purchase_buttons">
+                      <div id="purchase_btn_template" class="purchase_button hidden"></div>
+                  </div>
+              </div>
+          </div>
+
+          <div id="ui_upgrades_menu" class="ui_upgrades_menu hidden">
+              <h3><span id="upgrade_tower_name"></span> LEVEL <span id="upgrade_tower_lvl"></h3>
+              <div id="upgrade_btn" class="upgrade_btn">LEVEL UP</div>
+              <div id="destroy_btn" class="upgrade_btn">DESTROY TOWER</div>
+          </div>
+
+          <div id="ui_description_menu" class="ui_description_menu">
+              <div class="ui_description_container">
+                  <div class="ui_description_header">
+                      <h3 id="ui_tower_name">FIRE TOWER</h3>
+                      <div class="ui_atk_box">
+                          <span id="ui_atk"> ATK:</span>
+                          <span id="ui_atk_value">200</span>
+                      </div>
+                      <div class="ui_spd_box">
+                          <span id="ui_spd"> SPD:</span>
+                          <span id="ui_spd_value">200</span>
+                      </div>
+                  </div>
+                  <div id="ui_button_build" class="ui_button_build">
+                      BUILD TOWER
+                  </div>
+                  <div class="ui_button_price">
+                      <img class="ui_icon" src="src/images/mineral-2-icon.png"/>  - 20 
+                  </div>
+              </div>
+          </div>
+        </div>
+
+        <div id="intro-container">
+          <div id="play-btn" class="play-btn"></div>
+        </div>
+          <div class="main-content">
+            <div class="container">
+            ANTIMATERIA
+            <p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non tellus volutpat, mollis turpis a, venenatis est. Cras vitae urna sit amet turpis suscipit ultricies vel at ipsum. Suspendisse condimentum velit vitae massa faucibus eleifend. Maecenas gravida arcu porta tellus placerat molestie. Aenean viverra enim fermentum consectetur tempus. Donec ac neque fermentum, egestas lorem nec, semper ex. Aliquam interdum vulputate diam ac aliquet. Nulla eget lorem at eros tempus sodales. </p>
+            </div>
+          </div>
+    </body>
+</html>
